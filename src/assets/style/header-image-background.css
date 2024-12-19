@@ -1,0 +1,197 @@
+
+
+.header-and-title-container {
+    width: 100%;
+    height: 28rem;
+    
+}
+
+.header-information-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 90%;
+}
+
+
+.header-image-background {
+
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+
+}
+
+.header-title {
+    color: rgb(255, 255, 255);
+    text-shadow: -2px 2px 3px black, -3px 3px 4px black, -4px 4px 5px black;
+    font-size: 3.5rem;
+
+    border-right: 4px solid;
+    width: 16ch;
+    white-space: nowrap;
+    border-right: 4px solid;
+    animation:typing 2s steps(16), blink .5s infinite step-end alternate-reverse;
+    overflow: hidden;
+}
+
+
+@keyframes typing {
+    from {width: 0};
+    
+}
+
+@keyframes blink {
+
+    50% {
+        border-color: transparent;
+    }
+}
+
+.sub-title {
+    font-size: 1.6rem;
+    color: rgb(255, 255, 255);
+    text-shadow: -2px 2px 3px black, -3px 3px 4px black, -4px 4px 5px black;
+    
+}
+
+.icons {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    transition: all 300ms;
+    
+}
+
+.linkedin-icon {
+    box-shadow: -3px 3px 2px #005A88, -3px 3px 2px #005A88, -3px 3px 2px #005A88;
+}
+.whatsapp-icon {
+    box-shadow: -3px 3px 2px #016F15, -3px 3px 2px #016F15, -3px 3px 2px #016F15;
+}
+.instagram-icon {
+    box-shadow: -3px 3px 2px #7F6504, -3px 3px 2px #7F6504, -3px 3px 2px #7F6504;
+}
+.facebook-icon {
+    box-shadow: -3px 3px 2px #035DD1, -3px 3px 2px #035DD1, -3px 3px 2px #035DD1;
+}
+
+.icons:hover {
+    transform: scale(1.2, 1.2) translateY(10px);
+    cursor: pointer;
+}
+
+.icons:active {
+    transform: scale(1.5, 1.5);
+    box-shadow: -2px 2px 4px black;
+}
+
+
+
+.cv{
+    display: flex;
+    align-items: center;
+    width: 20%;
+    margin-left: 1rem;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    font-size: 1.2rem;
+    background-color: rgb(38 175 255);
+    /* , 2px -2px 3px black, -3px 3px 4px black, 3px -3px 4px black, -4px 4px 5px black, 4px -4px 5px black */
+    box-shadow: -2px 2px 2px rgb(4, 79, 122), -3px 3px 3px rgb(4, 79, 122), -4px 4px 4px rgb(4, 79, 122);
+    cursor: pointer;
+    transition: all 300ms;
+    
+    
+}
+
+.cv:hover {
+    /* transform: scale(1, 1); */
+    font-size: 1.3rem;
+
+    .icon-download {
+        transition: all 300ms;
+        animation: donwload 2.5s infinite linear;
+        
+    }
+    
+}
+.cv:active {
+    transform: scale(1.1,1.1);
+}
+
+.cv a {
+    flex: 3;
+    font-family: "Ubuntu";
+    font-weight: 500;
+    font-style: normal;
+    color: white;
+} 
+
+.icon-download-container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 1rem;
+    justify-content: end;
+    overflow: hidden;
+    
+   
+}
+
+
+@keyframes donwload {
+
+    0% {
+        transform: translateY( -5rem );
+        
+    }
+
+    50% {
+        transform: translateY( 5rem );
+        
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY( 0% );
+        opacity: 0;
+        
+        
+    }
+}
+
+
+/* @keyframes donwload {
+
+    0% {
+        transform: translateY( -5rem );
+        
+    }
+
+    50% {
+        transform: translateY( 5rem );
+        
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY( 0% );
+        opacity: 0;
+        
+        
+    }
+} */

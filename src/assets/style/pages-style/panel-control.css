@@ -1,0 +1,40 @@
+.panel-control-container {
+    display: flex;
+    width: 65%;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+
+    width: 45%;
+}
+
+.label {
+
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+}
+
+.form input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+.error-message-none {
+    display: none;
+}
+.error-message {
+    font-size: 0.8rem;
+    color: red;
+}
+
+.asterisk {
+    color: red;
+}

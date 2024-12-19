@@ -1,0 +1,91 @@
+@font-face {
+    src: url('../web-symbols//WebSymbols-Regular.otf');
+    font-family: icons;
+
+}
+
+.container-show-projects {
+    display: flex;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    border: 1px solid red;
+    padding-bottom: 10px;
+}
+
+.project-container {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: auto;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    box-shadow: -2px 2px 3px #ccc, -3px 3px 4px #ccc;
+    
+}
+
+.title-project {
+    text-align:  center;
+    color: #383636;
+}
+
+.sub-title-project {
+    color: #383636;
+}
+.technology {
+    color: #746e6e;
+}
+
+.sub-title-project, .link {
+    margin-left: 10px;
+    
+}
+
+.link {
+    text-decoration: none;
+    color: rgb(92, 77, 230);
+    margin-bottom: 12px;
+}
+
+.img-project {
+    width: 100%;
+    height: 10rem;
+    /* z-index: 1; */
+}
+
+.icons-container {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.icons-projects{
+    
+    font-family: icons;
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    margin-right: 5px;
+    
+}
+.link-icon-update {
+    color: blue;
+    text-decoration: none;
+    
+}
+
+
+.icon-delete {
+    color: red;
+}
+
+.icons-projects:active {
+    transform: scale(1.2, 1.2);
+}
+
