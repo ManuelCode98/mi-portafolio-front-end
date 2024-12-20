@@ -16,7 +16,7 @@ const cv = 'Descarga mi CV';
 
 
 const HeaderImageBackground = ()=>{
-
+    
 
     return (
         <div className='header-and-title-container'>
@@ -38,7 +38,7 @@ const HeaderImageBackground = ()=>{
                 </button>
             </div>
         </div>
-
+        
     );
 
 };

@@ -1,7 +1,6 @@
-import { Routes, Route, Link } from 'react-router';
+import { Link } from 'react-router';
 
 import logo from '../assets/imgs/header-logo/logo-without-background.png';
-// import logo from '../assets/imgs/header-logo/logo.png';
 import '../assets/style/header-menu.css';
 
 

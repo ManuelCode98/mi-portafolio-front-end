@@ -7,19 +7,16 @@ const projectAdd = async( data )=>{
 
   const { name_project, name_technology, project_link, project_file } = data;
 
-
-  // Se utiliza el FormData para crear un para de valor osea que la imagen tenga su
-  // llaver y asi la pueda recibir el backend
   const data_project_file = project_file[0];
 
-  // const formData = new FormData();
+
   const formData = new FormData();
   formData.append('name_project',name_project);
   formData.append('name_technology',name_technology);
   formData.append('project_link',project_link);
   formData.append('file',data_project_file);
 
-  // console.log(data_project_file)
+
 
   await axios.post('http://localhost:3001/api/create-project', formData, {
 
@@ -27,7 +24,7 @@ const projectAdd = async( data )=>{
     name_technology,
     project_link,
     project_file,
-    // project_file: data_project_file,
+
   } ).then(()=>{
     alert('Proyecto creado');
   });
@@ -44,17 +41,12 @@ const projectUpdate = async(  data ,id )=>{
   // llaver y asi la pueda recibir el backend
   const data_project_file = project_file[0];
 
-  console.log(data)
-  console.log(id)
-
-  // const formData = new FormData();
   const formData = new FormData();
   formData.append('name_project',name_project);
   formData.append('name_technology',name_technology);
   formData.append('project_link',project_link);
   formData.append('file',data_project_file);
 
-  // console.log(data_project_file)
 
   await axios.put(`http://localhost:3001/api/update-project/${id}`, formData, {
 
@@ -62,7 +54,6 @@ const projectUpdate = async(  data ,id )=>{
     name_technology,
     project_link,
     project_file,
-    // project_file: data_project_file,
   } ).then(()=>{
     alert('Proyecto Actualizado');
   });
@@ -70,7 +61,6 @@ const projectUpdate = async(  data ,id )=>{
 
 }
 
-// const expresionRegular = '[0*a-z]';
 
 let projectId = '';
 let project = 0;
@@ -84,30 +74,10 @@ export const fillInFormField = ( eventClick, projectObj )=>{
   project = projectObj;
   enableButtonUpdate = eventClick.target.className;
 
-  // console.log(idProjectEvent.target.className)
-  // console.log(project)
-  // const projects = ;
-
-
-  // for (let i = 0; i < projects.length; i++) {
-    
-  //   projectToEdit.push(projects[i])
-    
-  // }
-
-  // console.log(projects)
-
 }
 
 export const PanelControl = ( props ) => {
-  // const { id, name_project, name_technology, project_link, project_file } = project;
-
-  // const [name_project, setName_project]= useState('');
-  // const [name_technology, setName_technology]= useState('');
-  // const [project_link, setProject_link]= useState('');
-  // const [project_file, setProject_file]= useState('');
-
-
+  
   const [ formState, setFormState ] = useState({
     name_project: project.name_project,
     name_technology: project.name_technology,
@@ -138,15 +108,6 @@ export const PanelControl = ( props ) => {
     setFormState({ ...formState, [name] : value})
   }
 
-  // if(project != 0 ){
-   
-  //   useEffect( ()=>{
-  //     // setName_project( project.name_project );
-  //     setName_technology( project.name_technology );
-  //     setProject_link( project.project_link );
-  //     // setProject_file( project.project_file );
-  //   }, [])
-  // }
   
 
   return (
@@ -166,14 +127,12 @@ export const PanelControl = ( props ) => {
           id='name_project' 
           name='name_project' 
           value={name_project}
-          // onChange={  e => setName_project( e.target.value ) }
           onChange={ onInputChange }
           placeholder='Escribe el nombre del proyecto...'
           {... register('name_project', {required: true, onChange: onInputChange })}
           />
 
           {
-            //  console.log( errors)
             errors.project_name?.type === 'required' && (
               <span className='error-message'>El nombre del proyecto es obligatorio...</span> 
             )
@@ -208,7 +167,7 @@ export const PanelControl = ( props ) => {
           name='project_link' 
           value={project_link}
           onChange={ onInputChange }
-          placeholder='https://github.com/name1234/project' 
+          placeholder='www.github.com/name1234/project' 
           {...register('project_link', { required: true, onChange: onInputChange } )}
         />
 
@@ -223,7 +182,7 @@ export const PanelControl = ( props ) => {
         <div className='label'>
           <label htmlFor='project_file' type='file'>Imagen del proyecto<span className='asterisk'>*</span></label>
         </div>
-        <input type='file' 
+        <input className='button button-load-file' type='file' 
           id='project_file' 
           name='project_file'
           accept='.png, .jpg' 
@@ -239,8 +198,8 @@ export const PanelControl = ( props ) => {
 
         {
           enableButtonUpdate ? (
-          <button >Actualizar proyecto</button>
-          ): <button >Agregar proyecto</button>
+          <button className='button button-update'>Actualizar proyecto</button>
+          ): <button className='button button-add' >Agregar proyecto</button>
         }
         
 
@@ -249,4 +208,3 @@ export const PanelControl = ( props ) => {
   )
 }
 
-// export default PanelControl;
