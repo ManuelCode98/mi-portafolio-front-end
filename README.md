@@ -1,3 +1,5 @@
+0. Antes que nada el archivo descargado debes meterlo en una carpeta y renombrarlo a `` client ``
+
 1. Abrir la terminal de visial studio code y escribir ``` cd client ```
 
 2. Ejecutar el siguiente comando `` npm install `` para descargar los modulos de node Js
