@@ -209,6 +209,9 @@
 
 
 @media ( max-width: 519px ){
+    .header-and-title-container {
+        height: 24rem;
+    }
 
     .header-title {
         font-size: 2.5rem;

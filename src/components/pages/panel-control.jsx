@@ -3,6 +3,9 @@ import '../../assets/style/pages-style/panel-control.css';
 import { useForm } from 'react-hook-form';
 import axios  from 'axios';
 
+let imagens ='upload-image/';
+
+
 const projectAdd = async( data )=>{
 
   const { name_project, name_technology, project_link, project_file } = data;
@@ -76,19 +79,44 @@ export const fillInFormField = ( eventClick, projectObj )=>{
 
 }
 
+
+
 export const PanelControl = ( props ) => {
   
-  const [ formState, setFormState ] = useState({
+  const [ useFormState, setFormState ] = useState({
     name_project: project.name_project,
     name_technology: project.name_technology,
     project_link: project.project_link,
+    project_file: project.project_file,
   })
+
+  
+
   const { register, handleSubmit, formState : { errors } } = useForm();
 
-  console.log()
 
-  const { name_project, name_technology, project_link } = formState;
+  const { name_project, name_technology, project_link, project_file } = useFormState;
   
+
+  const cleanForm = ( formData )=>{
+
+   const { name_project, name_technology, project_link, project_file } = formData;
+
+    if( name_project && name_technology && project_link && project_file ){
+
+      setTimeout(() => {
+        setFormState( {
+          name_project: '',
+          name_technology: '',
+          project_link: '',
+          project_file: '',
+        } )
+      }, 500);
+      
+      return;
+    }
+    
+  };
 
   const [ errorMessage, setErrorMessage ] = useState('error-message-none');
 
@@ -96,17 +124,18 @@ export const PanelControl = ( props ) => {
 
     const { name, value } = target;
 
+
     if(project != 0){
 
-      console.log('estoy en el if')
-      setFormState({ ...formState, [name] : value});
+      setFormState({ ...useFormState, [name] : value});
 
       return;
     }
  
-    console.log(project)
-    setFormState({ ...formState, [name] : value})
+    setFormState({ ...useFormState, [name] : value})
   }
+
+
 
   
 
@@ -116,8 +145,8 @@ export const PanelControl = ( props ) => {
 
       <span className={ errorMessage }>Los campos marcado con * son obligatorios...</span>
       <form className='form' onSubmit={ enableButtonUpdate ? (
-           handleSubmit( (e) => projectUpdate( e, projectId ) )
-        ): handleSubmit( projectAdd ) }> 
+           handleSubmit( ( eventData ) => { projectUpdate( eventData, projectId ), cleanForm( eventData )} )
+        ): handleSubmit( ( eventData ) => { projectAdd( eventData ), cleanForm( eventData )} ) }> 
 
         <div className='label'>
           <label htmlFor="name_project">Nombre del proyecto<span className='asterisk'>*</span></label>
@@ -133,8 +162,8 @@ export const PanelControl = ( props ) => {
           />
 
           {
-            errors.project_name?.type === 'required' && (
-              <span className='error-message'>El nombre del proyecto es obligatorio...</span> 
+            errors.name_project?.type === 'required' && (
+              <p className='error-message'>El nombre del proyecto es obligatorio...</p> 
             )
           }
 
@@ -152,8 +181,8 @@ export const PanelControl = ( props ) => {
         />
 
           {
-            errors.technology_name?.type === 'required' && (
-              <span className='error-message'>Las tecnologias usadas en el proyecto son obligatorias...</span> 
+            errors.name_technology?.type === 'required' && (
+              <p className='error-message'>Las tecnologias usadas en el proyecto son obligatorias...</p> 
             )
           }
 
@@ -173,7 +202,7 @@ export const PanelControl = ( props ) => {
 
           {
             errors.project_link?.type === 'required' && (
-              <span className='error-message'>El link del proyecto es obligatorio...</span>
+              <p className='error-message'>El link del proyecto es obligatorio...</p>
 
             )
           }
@@ -186,20 +215,20 @@ export const PanelControl = ( props ) => {
           id='project_file' 
           name='project_file'
           accept='.png, .jpg' 
-          {...register( 'project_file', { required: true, } )}
+          {...register( 'project_file', { required: true, }) }
         />
 
         {
           errors.project_file?.type === 'required' && (
-            <span className='error-message'>La imagen del proyecto es obligatoria...</span>
+            <p className='error-message'>La imagen del proyecto es obligatoria...</p>
 
           ) 
         }
 
         {
           enableButtonUpdate ? (
-          <button className='button button-update'>Actualizar proyecto</button>
-          ): <button className='button button-add' >Agregar proyecto</button>
+          <button className='button button-update'  >Actualizar proyecto</button>
+          ): <button className='button button-add' onClick={ cleanForm } >Agregar proyecto</button>
         }
         
 
