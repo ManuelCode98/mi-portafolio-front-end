@@ -7,6 +7,7 @@
 .container-show-projects {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
     height: auto;
     padding-bottom: 10px;
@@ -26,16 +27,26 @@
     margin-bottom: 10px;
     border: 1px solid #ccc;
     box-shadow: -2px 2px 3px #ccc, -3px 3px 4px #ccc;
-    /* overflow: hidden; */
     
 }
 
 .container-img-project {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
-    height: 80%;
-    opacity: 0.5;
-    /* opacity: 0; */
+    /* height: 80%; */
+    height: 100%;
+    transition: all 300ms linear;
+    /* overflow: hidden; */
+    
+}
+
+.show-disabled {
+    opacity: 0.3;
+}
+
+.show-active {
+    opacity: 1;
+    z-index: 1;
 }
 
 .img-project {
@@ -49,12 +60,13 @@
     /* justify-content: center; */
     /* align-items: center; */
     width: 20%;
-    height: 80%;
+    /* height: 80%; */
+    height: auto;
     /*min-height: 10rem;
     max-height: 10rem; */
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
     position: absolute;
-    top: 0;
+    /* top: 0; */
 
 }
 
@@ -65,7 +77,24 @@
 
 .sub-title-project {
     color: #383636;
+    /* overflow: hidden; */
+    overflow-y: scroll;
+    height: 3.5rem;
+    outline: none;
 }
+.sub-title-project::-webkit-scrollbar {
+    width: 3px;
+}
+.sub-title-project::-webkit-scrollbar-track {
+    background: rgb(150, 152, 153);
+}
+.sub-title-project::-webkit-scrollbar-thumb {
+    background-color: rgb(247, 41, 41);
+    /*border-radius: 10px; */
+    border: 0.5px solid purple;
+    
+}
+
 .technology {
     color: #746e6e;
 }
@@ -79,139 +108,26 @@
     text-decoration: none;
     color: rgb(92, 77, 230);
     margin-bottom: 12px;
+    transition: color 300ms;
+}
+.link:hover {
+    color: rgb(41, 18, 255);
 }
 
 .icons-container {
-    display: flex;
-    width: 100%;
-    justify-content: end;
-    flex-direction: row;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid red;
-}
-
-.icons-projects{
-    
-    font-family: icons;
-    border: none;
-    background-color: transparent;
-    font-size: 1rem;
-    margin-right: 5px;
-    
-}
-.link-icon-update {
-    color: blue;
-    text-decoration: none;
-    
-}
-
-.link-icon-delete {
-   color: red;
-    text-decoration: none;
-    
-}
-
-.icons-projects:active {
-    transform: scale(1.2, 1.2);
-}
-
-
-@media ( max-width: 1105px ){
-    .container-show-projects {
-        justify-content: center;
-    }
-}
-
-@media ( max-width: 771px ){
-
-    .project-container {
-        width: 11rem;
-    }
-
-}
-
-@media ( max-width: 650px ){
-
-    .project-container {
-        margin: 5px;
-        width: 45%;
-    }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-/* @font-face {
-    src: url('../web-symbols//WebSymbols-Regular.otf');
-    font-family: icons;
-
-}
-
-.container-show-projects {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: auto;
-    padding-bottom: 10px;
-}
-
-.project-container {
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* width: 100%; */
     width: 20%;
-    height: auto;
-    margin-left: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    box-shadow: -2px 2px 3px #ccc, -3px 3px 4px #ccc;
-    
-}
-
-.title-project {
-    text-align:  center;
-    color: #383636;
-}
-
-.sub-title-project {
-    color: #383636;
-}
-.technology {
-    color: #746e6e;
-}
-
-.sub-title-project, .link {
-    margin-left: 10px;
-    
-}
-
-.link {
-    text-decoration: none;
-    color: rgb(92, 77, 230);
-    margin-bottom: 12px;
-}
-
-.img-project {
-    width: 100%;
-    height: 10rem;
-}
-
-.icons-container {
-    display: flex;
-    width: 100%;
-    justify-content: end;
-    flex-direction: row;
+    height: 2rem;
+    /* justify-content: end; */
+    /* flex-direction: row; */
     margin-top: 5px;
     margin-bottom: 10px;
+    /* border: 1px solid red; */
+    position: absolute;
+    line-height: 21rem;
+    text-align: end;
+    z-index: 1;
 }
 
 .icons-projects{
@@ -221,6 +137,7 @@
     background-color: transparent;
     font-size: 1rem;
     margin-right: 5px;
+    z-index: 1;
     
 }
 .link-icon-update {
@@ -234,6 +151,11 @@
     text-decoration: none;
     
 }
+
+.icon-show {
+    color: #17ee43;
+}
+
 
 .icons-projects:active {
     transform: scale(1.2, 1.2);
@@ -261,4 +183,4 @@
         width: 45%;
     }
 
-} */
+}

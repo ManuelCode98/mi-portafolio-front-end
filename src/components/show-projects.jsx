@@ -12,6 +12,52 @@ let imagens ='upload-image/';
 
 export const ShowProjects = ()=>{
 
+    const [ classState, setClassState ] = useState( 'show-disabled' );
+    const [ x, setX ] = useState( [ ] );
+
+    const changeClass = ( { target } )=>{
+
+        
+        const idProject = target.id;
+
+    
+        const selectProject = document.getElementById(`container-img-project${ idProject }`);
+    
+      
+            
+        if( selectProject.className === 'container-img-project show-disabled' ){
+
+            console.log('Estoy en el if')
+    
+            selectProject.classList.add( 'show-active' );
+
+            return
+
+        };
+
+        selectProject.classList.remove( 'show-active' );
+            
+        
+
+
+
+
+
+        // if( selectProject.className === 'container-img-project' ){
+
+        //     console.log('Estoy en el if')
+
+        //     selectProject.classList.add( 'show-active' );
+
+        //     return
+
+        // }
+
+        // selectProject.classList.remove( 'show-active' );
+
+    }
+
+
     const [ projects, setProjects ] = useState([]);
 
         const getProjects = async( event = null  )=> {
@@ -49,7 +95,7 @@ export const ShowProjects = ()=>{
                 { 
                     projects.map( (projectValue, key)=>{
                        return <div className='project-container' key={projectValue.id}>
-                                <div className='container-img-project'>
+                                <div id={ `container-img-project${ projectValue.id }` } className={ 'container-img-project show-disabled' }>
                                     <img className='img-project' src={imagens+projectValue.project_file}/>
                                 </div>
                                 <div className='container-data-project'>
@@ -73,6 +119,11 @@ export const ShowProjects = ()=>{
                                                 ' 
                                         </Link>
                                     </button>
+
+                                    <button id={ projectValue.id } className = 'icons-projects icon-show' 
+                                            onClick={ changeClass }>
+                                                I
+                                    </button>
                                 </div>
                         </div> 
                     } )
@@ -81,37 +132,4 @@ export const ShowProjects = ()=>{
             </div>
       )
 
-//   return (
-//         <div className="container-show-projects"  >
-//             {   
-                
-//                 projects.map( (projectValue, key)=>{
-//                    return <div className='project-container' key={projectValue.id}>
-//                         <img className='img-project' src={imagens+projectValue.project_file}/>
-//                         <h4 className='title-project' >{projectValue.name_project}</h4>
-//                         <p className='sub-title-project'>Tecnologias: <span className='technology'>{projectValue.name_technology}</span></p>
-//                         <a className='link' href={'https://'+projectValue.project_link} target='_blank' rel='noopener noreferrer' >Enlace del proyecto</a>
-//                         <div className='icons-container'>
-//                             <button className='icons-projects icon-update' >
-//                                 <Link id={ projectValue.id } 
-//                                     onClick={ (event)=> fillInFormField( event, projectValue ) } 
-//                                     className='link-icon-update' to='panel-control'> 
-//                                         p
-//                                 </Link>
-//                             </button>
-
-//                             <button className='icons-projects icon-delete' >
-//                                 <Link id={ projectValue.id } 
-//                                     onClick={ async( e ) =>  { await projectDelete(e), await getProjects( e ) }} 
-//                                     className='link-icon-delete' to='/'>
-//                                         ' 
-//                                 </Link>
-//                             </button>
-//                         </div>
-//                     </div> 
-//                 } )
-//             }
-
-//         </div>
-//   )
 };
