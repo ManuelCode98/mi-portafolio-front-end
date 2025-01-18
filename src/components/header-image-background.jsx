@@ -8,12 +8,17 @@ import facebookIcon from '../assets/imgs/social-media-icons/facebook.png';
 import downloadIcon from '../assets/imgs/social-media-icons/download.png';
 
 
+
 import '../assets/style/header-image-background.css';
 
 const title = 'Manuel Rodriguez';
 const subTitle = 'Desarrollador de software en Palmira-Colombia';
 const cv = 'Descarga mi CV';
 
+const linkLinkedin = 'https://www.linkedin.com/in/manuel-rodriguez-ba5b5b339/';
+const linkWhatsapp = 'https://wa.me/3157382433';
+const linkInstagram = 'https://www.instagram.com/manuelr098/';
+const linkFacebook = 'https://www.facebook.com/profile.php?id=100001364317304';
 
 const HeaderImageBackground = ()=>{
     
@@ -25,10 +30,10 @@ const HeaderImageBackground = ()=>{
                 <h1 className='header-title'>{title}</h1>
                 <h3 className='sub-title'>{subTitle}</h3>
                 <span className='container-social-networks'>
-                    <img className='icons linkedin-icon' src={linkedinIcon} />
-                    <img className='icons whatsapp-icon' src={whatsappIcon} />
-                    <img className='icons instagram-icon' src={instagramIcon} />
-                    <img className='icons facebook-icon' src={facebookIcon} />
+                    <a href={ linkLinkedin }  target='_blank' > <img className='icons linkedin-icon' src={linkedinIcon} /> </a>
+                    <a href={ linkWhatsapp }  target='_blank' > <img className='icons whatsapp-icon' src={whatsappIcon} /> </a>
+                    <a href={ linkInstagram } target='_blank' > <img className='icons instagram-icon' src={instagramIcon} /> </a>
+                    <a href={ linkFacebook }  target='_blank' > <img className='icons facebook-icon' src={facebookIcon} /> </a>
                 </span>
                 <button className='cv'><a>{cv}</a>
                     
