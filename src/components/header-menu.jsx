@@ -17,7 +17,7 @@ const HeaderMenu = ()=>{
 
             <div className='menu-options-container'>
                 <li><Link to='/'>Inicio</Link></li>
-                <li><Link to='acerca-de'>Acerca de</Link></li>
+                <li><Link to='login'>Iniciar Sessión</Link></li>
                 <li><Link to='panel-control'>Panel de control</Link></li>
             </div>
 

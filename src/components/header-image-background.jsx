@@ -21,7 +21,6 @@ const linkInstagram = 'https://www.instagram.com/manuelr098/';
 const linkFacebook = 'https://www.facebook.com/profile.php?id=100001364317304';
 
 const HeaderImageBackground = ()=>{
-    
 
     return (
         <div className='header-and-title-container'>

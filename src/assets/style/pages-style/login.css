@@ -1,4 +1,4 @@
-.panel-control-container {
+.login-container {
     display: flex;
     width: 65%;
     margin: 0 auto;
@@ -46,28 +46,16 @@
     font-size: 1rem;
 }
 
-.button-update {
-    background-color: rgb(85, 127, 241);
-    transition: all 500ms;
-}
-.button-update:hover {
-    background-color: rgb(61, 112, 252);
-}
 
-.button-add {
+
+.button-login {
     background-color: rgb(57, 126, 2);
-    transition: all 500ms;
 }
-.button-add:hover {
-    background-color: rgb(52, 112, 3);
-}
-
 
 @media ( max-width: 953px ){
 
     .error-message {
         text-align: center;
-        
     }
 
 }
@@ -82,7 +70,7 @@
 
 @media ( max-width: 519px ){
 
-    .panel-control-container {
+    .login-container {
         width: 95%;
     }
 
@@ -103,7 +91,7 @@
 
 @media ( max-width: 958px ){
 
-    .panel-control-container {
+    .login-container {
         width: 70%;
     }
 
@@ -124,7 +112,7 @@
 
 @media ( max-width: 600px ){
 
-    .panel-control-container {
+    .login-container {
         width: 95%;
     }
 
@@ -149,7 +137,7 @@
 
 @media ( max-width: 519px ){
 
-    .panel-control-container {
+    .login-container {
         width: 95%;
     }
 

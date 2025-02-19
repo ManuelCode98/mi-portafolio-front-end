@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react';
-import '../../assets/style/pages-style/panel-control.css';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios  from 'axios';
+import { Link } from 'react-router';
+import { loginResponse } from './login';
+import '../../assets/style/pages-style/panel-control.css';
 
-let imagens ='upload-image/';
+let projectId = '';
+let project = 0;
+let enableButtonUpdate = '';
 
+let showMessageResponse = '';
 
 const projectAdd = async( data )=>{
 
@@ -12,26 +17,69 @@ const projectAdd = async( data )=>{
 
   const data_project_file = project_file[0];
 
-
   const formData = new FormData();
   formData.append('name_project',name_project);
   formData.append('name_technology',name_technology);
   formData.append('project_link',project_link);
   formData.append('file',data_project_file);
+  formData.append('image',data_project_file);
 
+  console.log(data_project_file)
 
+  try {
+   const response = await axios.post(`https://api.imgbb.com/1/upload?key=12474afbd8f57b42c6df468c4bcf3cd7`, formData, { 
+      headers: {
+        'Content-Type':'multipart/form-data'
+      } 
 
-  await axios.post('http://localhost:3001/api/create-project', formData, {
+    });
+    
+   const { success } = response.data;
+   const { url } = response.data.data;
+   
 
-    name_project,
-    name_technology,
-    project_link,
-    project_file,
+      if( success ){
 
-  } ).then(()=>{
-    alert('Proyecto creado');
-  });
+        const project_file = url;
 
+        const response = await axios.post('http://localhost:3001/api/create-project', {
+
+          name_project,
+          name_technology,
+          project_link,
+          project_file,
+
+        });
+
+        const { data, success } = response.data;
+
+        if( success ){
+
+          showMessageResponse = data ;
+
+          setTimeout(()=>{
+
+            showMessageResponse='';
+            
+          }, 5000)
+
+        }
+        
+      } else {
+
+        showMessageResponse = 'Imagen no subida';
+
+        setTimeout(()=>{
+
+          showMessageResponse = '';
+
+          }, 5000)
+        }
+
+  } catch (error) {
+
+    console.log(error)
+  }
 
 }
 
@@ -48,28 +96,55 @@ const projectUpdate = async(  data ,id )=>{
   formData.append('name_project',name_project);
   formData.append('name_technology',name_technology);
   formData.append('project_link',project_link);
-  formData.append('file',data_project_file);
+  formData.append('image',data_project_file);
 
+  try{
+    const response = await axios.post( `https://api.imgbb.com/1/upload?key=12474afbd8f57b42c6df468c4bcf3cd7`, formData, {
+      headers: {
+        "Content-Type":"multipart/form-data"
+      }
+    })
 
-  await axios.put(`http://localhost:3001/api/update-project/${id}`, formData, {
+    const { success } = response.data;
+    const { url } = response.data.data;
 
-    name_project,
-    name_technology,
-    project_link,
-    project_file,
-  } ).then(()=>{
-    alert('Proyecto Actualizado');
-  });
+    if( success ){
+
+      const response = await axios.put(`http://localhost:3001/api/update-project/${id}`, {
+
+        name_project,
+        name_technology,
+        project_link,
+        project_file: url,
+      })
+
+      const { data, success } = response.data;
+
+      if( success ){
+
+        showMessageResponse = data;
+
+        setTimeout(()=>{
+          showMessageResponse = '';
+        }, 5000)
+
+      }
+
+    }else{
+  
+      showMessageResponse = 'Imagen no actualizada...';
+    
+        setTimeout(()=>{
+          showMessageResponse = '';
+        }, 5000)
+    }
+
+  }catch(error){
+    console.log(error)
+  }
 
 
 }
-
-
-let projectId = '';
-let project = 0;
-let enableButtonUpdate = ''
-
-
 
 export const fillInFormField = ( eventClick, projectObj )=>{
 
@@ -77,12 +152,11 @@ export const fillInFormField = ( eventClick, projectObj )=>{
   project = projectObj;
   enableButtonUpdate = eventClick.target.className;
 
-}
-
+};
 
 
 export const PanelControl = ( props ) => {
-  
+
   const [ useFormState, setFormState ] = useState({
     name_project: project.name_project,
     name_technology: project.name_technology,
@@ -139,11 +213,13 @@ export const PanelControl = ( props ) => {
 
   
 
-  return (
+  return ( 
     <div className='panel-control-container'>
+      
       <h1 className='panel-control-title'>Agrega tus proyectos</h1> 
 
       <span className={ errorMessage }>Los campos marcado con * son obligatorios...</span>
+      { loginResponse ? (  
       <form className='form' onSubmit={ enableButtonUpdate ? (
            handleSubmit( ( eventData ) => { projectUpdate( eventData, projectId ), cleanForm( eventData )} )
         ): handleSubmit( ( eventData ) => { projectAdd( eventData ), cleanForm( eventData )} ) }> 
@@ -214,7 +290,8 @@ export const PanelControl = ( props ) => {
         <input className='button button-load-file' type='file' 
           id='project_file' 
           name='project_file'
-          accept='.png, .jpg' 
+          // accept='.png, .jpg' 
+          accept='image/*'
           {...register( 'project_file', { required: true, }) }
         />
 
@@ -230,10 +307,13 @@ export const PanelControl = ( props ) => {
           <button className='button button-update'  >Actualizar proyecto</button>
           ): <button className='button button-add' onClick={ cleanForm } >Agregar proyecto</button>
         }
-        
+ 
+        <h3 className='projectCommentCreated'>{ showMessageResponse }</h3>
 
-      </form>
+      </form> 
+
+      ):( <h3>Debes inicia sesión <Link to={'../login'}> Click aqui</Link></h3>) }
     </div>
+
   )
 }
-

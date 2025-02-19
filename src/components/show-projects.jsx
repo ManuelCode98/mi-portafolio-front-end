@@ -4,26 +4,17 @@ import '../assets/style/show-projects.css';
 import axios  from 'axios';
 import { projectDelete } from '../use-case/project-delete';
 import { fillInFormField } from './pages/panel-control';
+import { loginResponse } from './pages/login';
 
-
-
-let imagens ='upload-image/';
 
 
 export const ShowProjects = ()=>{
 
-    const [ classState, setClassState ] = useState( 'show-disabled' );
-    const [ x, setX ] = useState( [ ] );
-
     const changeClass = ( { target } )=>{
-
         
         const idProject = target.id;
-
     
         const selectProject = document.getElementById(`container-img-project${ idProject }`);
-    
-      
             
         if( selectProject.className === 'container-img-project show-disabled' ){
 
@@ -36,26 +27,8 @@ export const ShowProjects = ()=>{
         };
 
         selectProject.classList.remove( 'show-active' );
-            
-        
 
-
-
-
-
-        // if( selectProject.className === 'container-img-project' ){
-
-        //     console.log('Estoy en el if')
-
-        //     selectProject.classList.add( 'show-active' );
-
-        //     return
-
-        // }
-
-        // selectProject.classList.remove( 'show-active' );
-
-    }
+    };
 
 
     const [ projects, setProjects ] = useState([]);
@@ -63,6 +36,7 @@ export const ShowProjects = ()=>{
         const getProjects = async( event = null  )=> {
 
             await axios.get('http://localhost:3001/api/show-projects')
+            
             .then( async(response)=>{
 
                 const arrProjects = await response.data;
@@ -83,6 +57,8 @@ export const ShowProjects = ()=>{
                 setProjects( arrProjects );
 
             }); 
+
+            
             
         }
         
@@ -96,7 +72,7 @@ export const ShowProjects = ()=>{
                     projects.map( (projectValue, key)=>{
                        return <div className='project-container' key={projectValue.id}>
                                 <div id={ `container-img-project${ projectValue.id }` } className={ 'container-img-project show-disabled' }>
-                                    <img className='img-project' src={imagens+projectValue.project_file}/>
+                                    <img className='img-project' src={projectValue.project_file}/>
                                 </div>
                                 <div className='container-data-project'>
                                     <h4 className='title-project' >{projectValue.name_project}</h4>
@@ -106,12 +82,13 @@ export const ShowProjects = ()=>{
                                 <div className='icons-container'>
                                     <button className='icons-projects icon-update' >
                                         <Link id={ projectValue.id } 
-                                            onClick={ (event)=> fillInFormField( event, projectValue ) } 
+                                            onClick={ (event)=> fillInFormField( event, projectValue, projectValue.project_file ) } 
                                             className='link-icon-update' to='panel-control'> 
                                                 p
                                         </Link>
                                     </button>
         
+                                { loginResponse && (
                                     <button className='icons-projects icon-delete' >
                                         <Link id={ projectValue.id } 
                                             onClick={ async( e ) =>  { await projectDelete(e), await getProjects( e ) }} 
@@ -119,11 +96,12 @@ export const ShowProjects = ()=>{
                                                 ' 
                                         </Link>
                                     </button>
-
+                                )}
                                     <button id={ projectValue.id } className = 'icons-projects icon-show' 
                                             onClick={ changeClass }>
                                                 I
                                     </button>
+                                    
                                 </div>
                         </div> 
                     } )
