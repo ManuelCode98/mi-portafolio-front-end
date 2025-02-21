@@ -35,7 +35,8 @@ export const ShowProjects = ()=>{
 
         const getProjects = async( event = null  )=> {
 
-            await axios.get('http://localhost:3001/api/show-projects')
+            // await axios.get('http://localhost:3001/api/show-projects')
+            await axios.get('https://portafolio-back-end-yyu5.onrender.com/api/show-projects')
             
             .then( async(response)=>{
 

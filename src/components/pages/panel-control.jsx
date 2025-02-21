@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios  from 'axios';
 import { Link } from 'react-router';
@@ -42,7 +42,7 @@ const projectAdd = async( data )=>{
 
         const project_file = url;
 
-        const response = await axios.post('http://localhost:3001/api/create-project', {
+        const response = await axios.post('https://portafolio-back-end-yyu5.onrender.com/api/create-project', {
 
           name_project,
           name_technology,
@@ -73,7 +73,7 @@ const projectAdd = async( data )=>{
 
           showMessageResponse = '';
 
-          }, 5000)
+          }, 3000)
         }
 
   } catch (error) {
@@ -87,7 +87,6 @@ const projectUpdate = async(  data ,id )=>{
 
   const { name_project, name_technology, project_link, project_file } = data;
 
-
   // Se utiliza el FormData para crear un para de valor osea que la imagen tenga su
   // llaver y asi la pueda recibir el backend
   const data_project_file = project_file[0];
@@ -100,6 +99,7 @@ const projectUpdate = async(  data ,id )=>{
 
   try{
     const response = await axios.post( `https://api.imgbb.com/1/upload?key=12474afbd8f57b42c6df468c4bcf3cd7`, formData, {
+      
       headers: {
         "Content-Type":"multipart/form-data"
       }
@@ -110,7 +110,8 @@ const projectUpdate = async(  data ,id )=>{
 
     if( success ){
 
-      const response = await axios.put(`http://localhost:3001/api/update-project/${id}`, {
+      // const response = await axios.put(`http://localhost:3001/api/update-project/${id}`, {
+      const response = await axios.put(`https://portafolio-back-end-yyu5.onrender.com/api/update-project/${id}`, {
 
         name_project,
         name_technology,
@@ -126,7 +127,9 @@ const projectUpdate = async(  data ,id )=>{
 
         setTimeout(()=>{
           showMessageResponse = '';
-        }, 5000)
+
+          console.log(hola)
+        }, 3000)
 
       }
 
@@ -155,7 +158,9 @@ export const fillInFormField = ( eventClick, projectObj )=>{
 };
 
 
-export const PanelControl = ( props ) => {
+export const PanelControl = ( ) => {
+  
+  const [ errorMessage, setErrorMessage ] = useState('error-message-none');
 
   const [ useFormState, setFormState ] = useState({
     name_project: project.name_project,
@@ -164,13 +169,9 @@ export const PanelControl = ( props ) => {
     project_file: project.project_file,
   })
 
-  
-
   const { register, handleSubmit, formState : { errors } } = useForm();
-
-
-  const { name_project, name_technology, project_link, project_file } = useFormState;
   
+  const { name_project, name_technology, project_link, project_file } = useFormState;
 
   const cleanForm = ( formData )=>{
 
@@ -192,7 +193,6 @@ export const PanelControl = ( props ) => {
     
   };
 
-  const [ errorMessage, setErrorMessage ] = useState('error-message-none');
 
   const onInputChange = ( { target } )=>{
 
@@ -208,10 +208,6 @@ export const PanelControl = ( props ) => {
  
     setFormState({ ...useFormState, [name] : value})
   }
-
-
-
-  
 
   return ( 
     <div className='panel-control-container'>

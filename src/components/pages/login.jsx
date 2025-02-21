@@ -4,11 +4,12 @@ import { useState } from 'react';
 import axios from 'axios';
 
 export let loginResponse = ''; 
-       let titleLoginResponse = '';
+      //  let titleLoginResponse = '';
 
 const Login = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [ titleLoginResponse, setTitleLoginResponse ] = useState('');
 
   const [ useFormState, setFormState ] = useState({
     email: '',
@@ -27,14 +28,21 @@ const Login = () => {
 
     try {
 
-      await axios.post('http://localhost:3001/api/login', { email: useFormState.email, password: useFormState.password} )
-      // await axios.post('http://192.168.18.2:3001/api/login', { email: useFormState.email, password: useFormState.password} )
+      await axios.post('https://portafolio-back-end-yyu5.onrender.com/api/login', { email: useFormState.email, password: useFormState.password} )
       .then(( { data, status } )=>{
       
+        setTitleLoginResponse(data);
+
       if(status === 200){
+
         loginResponse = status;
 
-        titleLoginResponse = data;
+        setTimeout(()=>{
+
+          setTitleLoginResponse('');
+
+        }, 3000)
+
       }
 
       });
@@ -45,11 +53,23 @@ const Login = () => {
 
       if( status === 401 ){
 
-        titleLoginResponse = data;
+        setTitleLoginResponse(data);
+
+        setTimeout(()=>{
+
+          setTitleLoginResponse('');
+
+        }, 3000)
       } 
       if ( status === 500 ){
 
-        titleLoginResponse = data;
+        setTitleLoginResponse(data);
+
+        setTimeout(()=>{
+
+          setTitleLoginResponse('');
+
+        }, 3000)
       }
       
     }
