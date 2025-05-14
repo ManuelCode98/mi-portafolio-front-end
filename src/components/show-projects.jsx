@@ -2,10 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import '../assets/style/show-projects.css';
 import axios  from 'axios';
-import { projectDelete } from '../use-case/project-delete';
-import { fillInFormField } from './pages/panel-control';
-import { loginResponse } from './pages/login';
-
 
 
 export const ShowProjects = ()=>{
