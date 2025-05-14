@@ -11,7 +11,7 @@ const title = 'Tecnologias que domino como desarrollador';
 const SkillsContainer = (  )=>{
 
     return (
-        <div className="container">
+        <div id='container' className="container">
             <h2 className='title'>{title}</h2>
             <div className="skills-container">
 
