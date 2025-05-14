@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import '../assets/style/show-projects.css';
-import axios  from 'axios';
 
 
 export const ShowProjects = ()=>{
@@ -30,30 +29,6 @@ export const ShowProjects = ()=>{
     const [ projects, setProjects ] = useState([]);
 
         const getProjects = async( event = null  )=> {
-
-            // await axios.get('http://localhost:3001/api/show-projects')
-            await axios.get('https://portafolio-back-end-yyu5.onrender.com/api/show-projects')
-            
-            .then( async(response)=>{
-
-                const arrProjects = await response.data;
-
-                if( event != null ){
-
-                    const dataEvent = event.target.className;
-
-                    if( dataEvent === 'link-icon-delete' ){
-                        
-                        setProjects( arrProjects );
-                        return;
-                    }
-                    
-                    return;
-                }  
-            
-                setProjects( arrProjects );
-
-            }); 
 
             
             
