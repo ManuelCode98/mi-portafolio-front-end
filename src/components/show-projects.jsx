@@ -7,6 +7,15 @@ import { projects } from '../data/projects';
 export const ShowProjects = ()=>{
 
     const [ projectsState, setProjectsState ] = useState([]);
+    const [ imageSequenceState, setImageSequenceState ] = useState( 0 );
+
+    setTimeout(() => {
+        
+        imageSequenceState === 0 && setImageSequenceState( imageSequenceState + 1 );
+        imageSequenceState === 1 && setImageSequenceState( imageSequenceState + 1 );
+        imageSequenceState === 2 && setImageSequenceState( 0 );
+
+    }, 5000);
     
     useEffect(()=>{ 
     
@@ -40,7 +49,7 @@ export const ShowProjects = ()=>{
                        return (
                                 <div className='project-container' key={projectValue.id}>
                                     <div id={ `container-img-project${ projectValue.id }` } className={ 'container-img-project show-disabled' }>
-                                        <img className='img-project' src={projectValue.project_file}/>
+                                        <img className='img-project' src={projectValue.project_file[imageSequenceState]}/>
                                     </div>
                                     <div className='container-data-project'>
                                         <h4 className='title-project' >{projectValue.name_project}</h4>

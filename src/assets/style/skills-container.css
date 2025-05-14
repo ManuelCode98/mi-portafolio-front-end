@@ -6,9 +6,6 @@
 
 }
 
-/* #title-skills {
-    scroll-behavior: smooth;
-} */
 .title {
     margin-bottom: 2rem;
 }
@@ -23,7 +20,6 @@
     flex-direction: column;
     justify-content: space-around;
     flex: 1;
-
     align-items: center;
 }
 .technology-icons {
@@ -31,14 +27,12 @@
     height: 50px;
 }
 
-
 .skills {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: start;
     flex: 4;
-
 }
 
 @media ( max-width: 650px ){
@@ -46,7 +40,6 @@
     .container {
         font-size: 0.8rem;
     }
-
 }
 
 @media ( max-width: 519px ){
@@ -62,5 +55,4 @@
     .skills {
         margin-right: 10px;
     }
-
 }
