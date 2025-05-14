@@ -7,7 +7,15 @@ const HeaderMenu = ()=>{
 
     const scrollToSection = ( goToTheSection ) => {
         const section = document.getElementById( goToTheSection );
-        section && section.scrollIntoView( { behavior: 'smooth' } ); 
+        if( section ){
+            section.scrollIntoView( { behavior: 'smooth' } );
+
+            section.classList.add( 'located' );
+
+            setTimeout(() => {
+                section.classList.remove( 'located' );
+            }, 2000);
+        }
 
     };
 
@@ -21,7 +29,7 @@ const HeaderMenu = ()=>{
             <div className='menu-options-container'>
                 <li><Link to='/'>Inicio</Link></li>
                 <li><a onClick={ ( )=> scrollToSection( 'section-show-project' ) }>Proyectos</a></li>
-                <li><a onClick={ ( )=> scrollToSection( 'title-skills' ) } >Tecnologías</a></li>
+                <li><a onClick={ ( )=> scrollToSection( 'container' ) } >Tecnologías</a></li>
             </div>
         </div>
     );
