@@ -37,7 +37,6 @@
     list-style: none;
    
 }
-
 .menu-options-container li {
     transition: transform 300ms;
 }
@@ -46,14 +45,14 @@
     text-decoration: none;
     color: rgb(201, 198, 198);
     transition: all 500ms;
+    cursor: pointer;
     
 }
-
 .menu-options-container li:hover {
-    
     transform: scale(1.2);
-    color: white;
-
+}
+.menu-options-container li:hover a {
+    color: rgb(194, 95, 29);   
 }
 
 @media ( max-width: 771px ){
