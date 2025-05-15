@@ -1,3 +1,8 @@
+@font-face {
+    src: url('../web-symbols//WebSymbols-Regular.otf');
+    font-family: icons;
+}
+
 .header-and-title-container {
     width: 100%;
     height: 28rem;
@@ -85,6 +90,7 @@
     display: flex;
     align-items: center;
     width: 20%;
+    height: 3rem;
     margin-left: 1rem;
     outline: none;
     border: none;
@@ -96,35 +102,45 @@
     cursor: pointer;
     transition: all 300ms;
 }
-
 .cv:hover {
-    font-size: 1.3rem;
-    .icon-download {
-        transition: all 300ms;
-        animation: donwload 2.5s infinite linear;
-    }
+    transform: scale( 1.1, 1.1 );
+}
+
+
+.icon-download-container:hover {
+    font-size: 2rem;
 }
 .cv:active {
     transform: scale(1.1,1.1);
 }
 
-.cv a {
+.cv-link {
     flex: 3;
     font-family: "Ubuntu";
     font-weight: 500;
     font-style: normal;
     color: white;
     text-decoration: none;
+    margin-left: 20px;
+    transition: font-size 300ms;
+}
+.cv-link:hover {
+    font-size: 1.3rem;
 } 
 
 .icon-download-container {
     display: flex;
     flex: 1;
+    font-family: icons;
+    text-decoration: none;
     flex-direction: row;
     align-items: center;
-    margin-left: 1rem;
+    margin-right: 30px;
     justify-content: end;
+    font-size: 1.6rem;
+    color: black;
     overflow: hidden;
+    transition: font-size 300ms;
 }
 
 
@@ -180,9 +196,16 @@
         width: 45%;
         font-size: 1rem;
     }
-
     .cv:hover {
         transform: scale( 1, 1);
+    }
+
+    .cv-link:hover {
+        font-size: 1rem;
+    }
+    
+    .icon-download-container:hover {
+        font-size: 1.6rem;
     }
 
     .icons {
@@ -193,24 +216,37 @@
 
 @media ( max-width: 519px ){
     .header-and-title-container {
-        height: 24rem;
+        height: 19rem;
+    }
+
+    .header-information-container {
+        bottom: 20rem;
     }
 
     .header-title {
         font-size: 2.5rem;
      }
  
-     .sub-title {
+    .sub-title {
         font-size: 1rem;
-        margin-bottom: 35px;
-     }
-
-     .cv {
-        width: 50%;
-        font-size: 1rem;
+        margin-top: 0px;
+        margin-bottom: 20px;
     }
 
-    .cv:hover {
+    .icons:hover {
+        transform: scale(1, 1) translateY(0);
+    }
+
+    .icons:active {
+        transform: scale(1.5, 1.5);
+    }
+
+    .cv {
+        width: 70%;
+        font-size: 1.3rem;
+    }
+
+    .cv:active {
         font-size: 0.9rem;
     }
 

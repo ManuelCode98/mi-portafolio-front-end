@@ -31,11 +31,8 @@ export const ShowProjects = ()=>{
         const selectProject = document.getElementById(`container-img-project${ idProject }`);
             
         if( selectProject.className === 'container-img-project show-disabled' ){
-
-            console.log('Estoy en el if')
     
             selectProject.classList.add( 'show-active' );
-
             return
         };
 
@@ -43,7 +40,7 @@ export const ShowProjects = ()=>{
     };
 
     return (
-            <div id='section-show-project' className="container-show-projects"  >
+            <div id='section-show-project' className="container-show-projects not-located"  >
 
                 { Array.isArray( projectsState ) && projectsState.map( (projectValue, key)=>{
                        return (

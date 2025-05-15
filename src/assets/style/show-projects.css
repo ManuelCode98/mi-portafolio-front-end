@@ -12,15 +12,17 @@
     height: auto;
     padding-bottom: 10px;
     position: relative;
+    transition: border 500ms;
+    
 }
 
 .project-container {
     display: flex;
     flex-direction: column;
-    width: 20%;
-    height: 12rem;
+    width: 30%;
+    height: 14rem;
     min-height: 10rem;
-    max-height: 12rem;
+    max-height: 14rem;
     margin-left: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -48,22 +50,26 @@
 .img-project {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .container-data-project {
-    width: 20%;
+    width: 30%;
     height: auto;
     position: absolute;
 
 }
 
 .title-project {
+    font-size: 1.7rem;
     text-align:  center;
-    color: #383636;
+    color: #3a28dd;
+    text-shadow: 2px 2px 3px black, 2px 2px 3px black, 2px 2px 3px black;
 }
 
 .sub-title-project {
-    color: #383636;
+    color: black;
     overflow-y: scroll;
     height: 3.5rem;
     outline: none;
@@ -81,11 +87,12 @@
 }
 
 .technology {
-    color: #746e6e;
+    color: #524e4e;
 }
 
 .sub-title-project, .link {
     margin-left: 10px;
+    font-size: 1rem;
     
 }
 
@@ -94,18 +101,19 @@
     color: rgb(92, 77, 230);
     margin-bottom: 12px;
     transition: color 300ms;
+
 }
 .link:hover {
     color: rgb(41, 18, 255);
 }
 
 .icons-container {
-    width: 20%;
+    width: 30%;
     height: 2rem;
     margin-top: 5px;
     margin-bottom: 10px;
     position: absolute;
-    line-height: 21rem;
+    line-height: 25rem;
     text-align: end;
     z-index: 1;
 }
@@ -146,38 +154,55 @@
     .container-show-projects {
         justify-content: center;
     }
+
 }
 
 @media ( max-width: 771px ){
 
     .project-container {
-        width: 11rem;
+        width: 46%;
     }
 
+    .container-data-project {
+        width: 46%;
+    }
+
+    .icons-container {
+        width: 46%;
+    }
 }
 
 @media ( max-width: 650px ){
 
     .project-container {
-        width: 80%;
+        width: 90%;
+        margin-top: 30px;
+        margin-left: 0px;
+        height: 20rem;
+        min-height: 18rem;
+        max-height: 20rem;
     }
 
     .container-data-project {
-        width: 75%;
+        width: 90%;
     }
+
     .title-project {
-        text-align: center;
+        font-size: 2rem;
+    }
+    .sub-title-project {
+        font-size: 1.2rem;
+    }
+    .link {
+        font-size: 1.3rem;
     }
 
     .icons-container {
-        width: 70%;
-        height: 2rem;
-        margin-top: 5px;
-        margin-bottom: 10px;
-        position: absolute;
-        line-height: 21rem;
-        text-align: end;
-        z-index: 1;
+        width: 90%;
+        line-height: 36rem;
     }
 
+    .icons-projects {
+        font-size: 2rem;
+    }
 }

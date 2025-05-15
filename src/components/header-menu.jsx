@@ -10,10 +10,13 @@ const HeaderMenu = ()=>{
         if( section ){
             section.scrollIntoView( { behavior: 'smooth' } );
 
+            section.classList.remove( 'not-located' );
             section.classList.add( 'located' );
 
             setTimeout(() => {
                 section.classList.remove( 'located' );
+                section.classList.add( 'not-located' );
+
             }, 2000);
         }
 
